@@ -2,30 +2,18 @@
 import { createRoot } from "react-dom/client";
 // import Pet from './Pet'
 import SearchParams from "./SearchParams";
-// const App = () => {
-//   return React.createElement("div", {}, [
-//     React.createElement("h1", {}, "Adopt Me!"),
-//     React.createElement(Pet, {
-//       animal: "DOG",
-//       name: "Rockey",
-//       breed: "German Shephard",
-//     }),
-//     React.createElement(Pet, {
-//       animal: "CAT",
-//       name: "Mewo",
-//       breed: "Persian Classic",
-//     }),
-//   ]);
-// };
-
-//Making the jsx version of the Pet
-
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import Details from "./Details";
 const App = () => {
   return (
-    <div>
+    <BrowserRouter>
       <h1>Adopt Me!</h1>
-      <SearchParams />
-    </div>
+      <Routes>
+        <Route path="details/:id" element={<Details/>} />
+        <Route path="/" element={<SearchParams/>}></Route>
+      </Routes>
+   
+    </BrowserRouter>
   );
 };
 
