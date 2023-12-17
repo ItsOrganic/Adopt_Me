@@ -1,27 +1,23 @@
-import Pet from "./Pet";
+import { Link } from "react-router-dom";
 
-const Results = ({ pets }) => {
+const Pet = (props) => {
+  const { name, animal, breed, images, location, id } = props;
+
+  let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
+  if (images.length) {
+    hero = images[0];
+  }
   return (
-    <div className="search">
-      {!pets.length ? (
-        <h1>No Pets Found</h1>
-      ) : (
-        pets.map((pet) => {
-          return (
-            <Pet
-              animal={pet.animal}
-              key={pet.id}
-              name={pet.name}
-              breed={pet.breed}
-              images={pet.images}
-              location={`${pet.city}, ${pet.state}`}
-              id={pet.id}
-            />
-          );
-        })
-      )}
-    </div>
+    <Link to={`/details/${id}`} className="pet">
+      <div className="image-container">
+        <img src={hero} alt={name} />
+      </div>
+      <div className="info">
+        <h1>{name}</h1>
+        <h2>{`${animal} — ${breed} — ${location}`}</h2>
+      </div>
+    </Link>
   );
 };
 
-export default Results;
+export default Pet;
